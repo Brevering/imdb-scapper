@@ -1,4 +1,4 @@
-/* globals module require Promise */
+/* globals module Promise */
 "use strict";
 
 module.exports = function (time) {
