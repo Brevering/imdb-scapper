@@ -55,7 +55,7 @@ module.exports = {
                 });
         }
 
-        const asyncPagesCount = 5;
+        const asyncPagesCount = 15;
 
         Array.from({ length: asyncPagesCount })
             .forEach(() => getMoviesFromUrl(urlsQueue.pop()));
