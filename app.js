@@ -1,23 +1,18 @@
 /* globals console require setTimeout Promise */
-'use strict';
+"use strict";
 
 const httpRequester = require("./utils/http-requester");
 const htmlParser = require("./utils/html-parser");
 const queuesFactory = require("./data-structures/queue");
 const modelsFactory = require("./models");
 const constants = require("./config/constants");
+const wait = require("./utils/wait");
 
 require("./config/mongoose")(constants.connectionString);
 
 let urlsQueue = queuesFactory.getQueue();
 
-function wait(time) {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve();
-        }, time);
-    });
-}
+
 
 constants.genres.forEach(genre => {
     for (let i = 0; i < constants.pagesCount; i += 1) {
@@ -55,7 +50,7 @@ function getMoviesFromUrl(url) {
         });
 }
 
-const asyncPagesCount = 15;
+const asyncPagesCount = 5;
 
 Array.from({ length: asyncPagesCount })
     .forEach(() => getMoviesFromUrl(urlsQueue.pop()));
